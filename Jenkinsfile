@@ -30,9 +30,9 @@ pipeline {
                   nexusVersion: 'nexus3',
                   protocol: 'http',
                   nexusUrl: 'adt-nexus.easyvista-training.com:8081',
-                  groupId: 'QA',
+                  groupId: 'adt-nr-group',
                   version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
-                  repository: 'vprofile-repo',
+                  repository: 'adt-nr',
                   credentialsId: 'adt-nr',
                   artifacts: [
                     [artifactId: 'vproapp',
