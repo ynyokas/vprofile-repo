@@ -8,10 +8,10 @@ pipeline {
     stages {
         stage('Fetch Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/ynyokas/vprofile-repo.git'
+                git branch: 'vp-rem', url: 'https://github.com/ynyokas/vprofile-repo.git'
             }
         }
-        
+
         stage('BUILD') {
             steps {
                 sh 'mvn clean install -DskipTests'
