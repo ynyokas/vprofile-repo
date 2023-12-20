@@ -11,6 +11,7 @@ pipeline {
                 git branch: 'vp-rem', url: 'https://github.com/nruhaut/vprofile-repo.git'
             }
         }
+        
         stage('BUILD') {
             steps {
                 sh 'mvn clean install -DskipTests'
@@ -22,6 +23,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Test'){
+            steps {
+                sh 'mvn test'
+            }
+
+        }
+
         stage("UploadArtifact"){
             steps{
                 nexusArtifactUploader(
