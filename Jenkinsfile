@@ -8,10 +8,10 @@ pipeline {
     stages {
         stage('Fetch Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/nruhaut/vprofile-repo.git'
+                git branch: 'master', url: 'https://github.com/ynyokas/vprofile-repo.git'
             }
         }
-
+        
         stage('BUILD') {
             steps {
                 sh 'mvn clean install -DskipTests'
@@ -46,18 +46,18 @@ pipeline {
                 nexusArtifactUploader(
                   nexusVersion: 'nexus3',
                   protocol: 'http',
-                  nexusUrl: 'adt-nexus.easyvista-training.com:8081',
-                  groupId: 'adt-nr-group',
+                  nexusUrl: 'adt-nexus.easyvista-training.com:8081',//'172.31.39.229:8081',
+                  groupId: 'adt-yn-group',
                   version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
-                  repository: 'adt-nr',
-                  credentialsId: 'adt-nr',
+                  repository: 'adt-yn',
+                  credentialsId: 'adt-yn',
                   artifacts: [
                     [artifactId: 'vproapp',
                      classifier: '',
-                     file: 'target/vprofile-v2.war',
+                     file: 'target/vprofile-v1.war',
                      type: 'war']
-                ]
-                )
+                     ]
+                     )
             }
         }
     }
