@@ -11,7 +11,7 @@ pipeline {
                 git branch: 'vp-rem', url: 'https://github.com/nruhaut/vprofile-repo.git'
             }
         }
-        
+
         stage('BUILD') {
             steps {
                 sh 'mvn clean install -DskipTests'
@@ -21,6 +21,12 @@ pipeline {
                     echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
+            }
+        }
+
+        stage('Checkstyle Analysis'){
+            steps {
+                sh 'mvn checkstyle:checkstyle'
             }
         }
 
