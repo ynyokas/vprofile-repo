@@ -34,7 +34,11 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
-
+            post {
+                always {
+                    junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
+                }
+            }
         }
 
         stage("UploadArtifact"){
